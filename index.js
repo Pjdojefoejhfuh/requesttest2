@@ -6,17 +6,13 @@ const {
   Collection,
   Events,
   EmbedBuilder,
-<<<<<<< HEAD
   PermissionsBitField,
-=======
->>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
 } = require('discord.js');
 
 const config = require('./config');
 const db = require('./utils/db');
 const { refreshPanel } = require('./utils/panel');
 
-<<<<<<< HEAD
 const PREFIX = "?";
 
 const client = new Client({
@@ -25,10 +21,6 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
   ],
-=======
-const client = new Client({
-  intents: [GatewayIntentBits.Guilds],
->>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
 });
 
 client.commands = new Collection();
@@ -61,7 +53,6 @@ client.once(Events.ClientReady, async (readyClient) => {
   }
 });
 
-<<<<<<< HEAD
 // ===============================
 // Commandes avec préfixe
 // ===============================
@@ -69,13 +60,54 @@ client.on(Events.MessageCreate, async (message) => {
 
   if (message.author.bot) return;
   if (!message.guild) return;
-
   if (!message.content.startsWith(PREFIX)) return;
 
   const args = message.content.slice(PREFIX.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
   if (command === "purge") {
+if (command === "role") {
+
+    if (!message.member.permissions.has(PermissionsBitField.Flags.ManageRoles)) {
+        return message.reply("❌ Tu n'as pas la permission.");
+    }
+
+    const member =
+        message.mentions.members.first() ||
+        message.guild.members.cache.get(args[0]);
+
+    const role =
+        message.mentions.roles.first() ||
+        message.guild.roles.cache.get(args[1]);
+
+    if (!member) {
+        return message.reply("❌ Mentionne un membre.");
+    }
+
+    if (!role) {
+        return message.reply("❌ Mentionne un rôle.");
+    }
+
+    if (role.position >= message.guild.members.me.roles.highest.position) {
+        return message.reply("❌ Mon rôle est trop bas pour ajouter ce rôle.");
+    }
+
+    if (member.roles.cache.has(role.id)) {
+        return message.reply("❌ Ce membre possède déjà ce rôle.");
+    }
+
+    try {
+
+        await member.roles.add(role);
+
+        message.reply(`✅ Le rôle **${role.name}** a été ajouté à ${member}.`);
+
+    } catch (err) {
+        console.error(err);
+        message.reply("❌ Impossible d'ajouter le rôle.");
+    }
+
+}
 
     if (!message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
       return message.reply("❌ Tu n'as pas la permission de supprimer des messages.");
@@ -84,7 +116,7 @@ client.on(Events.MessageCreate, async (message) => {
     const amount = parseInt(args[0]);
 
     if (isNaN(amount)) {
-      return message.reply("❌ Utilisation : `?purge <nombre>`");
+      return message.reply("❌ Utilisation : ?purge <nombre>");
     }
 
     if (amount < 1 || amount > 100) {
@@ -112,14 +144,11 @@ client.on(Events.MessageCreate, async (message) => {
   }
 });
 
-=======
->>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
+// ===============================
 // Interactions
+// ===============================
 client.on(Events.InteractionCreate, async (interaction) => {
 
-  // ===============================
-  // Commandes Slash
-  // ===============================
   if (interaction.isChatInputCommand()) {
 
     const command = client.commands.get(interaction.commandName);
@@ -151,9 +180,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
     return;
   }
 
-  // ===============================
-  // Sélection d'une requête
-  // ===============================
   if (
     interaction.isStringSelectMenu() &&
     interaction.customId === "request_select"
@@ -161,15 +187,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
     try {
 
-<<<<<<< HEAD
-=======
-      // Réponse immédiate pour éviter l'expiration
->>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       await interaction.deferReply({ flags: 64 });
 
       const requestId = interaction.values[0];
       const request = db.getById(requestId);
-
       if (!request || request.status !== "pending") {
 
         await interaction.editReply({
@@ -181,20 +202,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
         return;
       }
 
-<<<<<<< HEAD
-=======
-      // Mise à jour BDD
->>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       db.update(requestId, {
         status: "claimed",
         claimedBy: interaction.user.id,
         claimedAt: Date.now(),
       });
 
-<<<<<<< HEAD
-=======
-      // Création du MP
->>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       const embed = new EmbedBuilder()
         .setColor(0x00b0f4)
         .setTitle("🎮 Requête prise !")
@@ -219,15 +232,8 @@ client.on(Events.InteractionCreate, async (interaction) => {
         dmSent = false;
       }
 
-<<<<<<< HEAD
       await refreshPanel(client);
 
-=======
-      // Actualisation du panel
-      await refreshPanel(client);
-
-      // Réponse
->>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       await interaction.editReply({
         content: dmSent
           ? "✅ Tu as pris cette requête ! Vérifie tes messages privés."
@@ -260,7 +266,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
     return;
   }
-
 });
 
 client.login(config.token);
