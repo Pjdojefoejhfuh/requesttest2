@@ -66,48 +66,6 @@ client.on(Events.MessageCreate, async (message) => {
   const command = args.shift().toLowerCase();
 
   if (command === "purge") {
-if (command === "role") {
-
-    if (!message.member.permissions.has(PermissionsBitField.Flags.ManageRoles)) {
-        return message.reply("❌ Tu n'as pas la permission.");
-    }
-
-    const member =
-        message.mentions.members.first() ||
-        message.guild.members.cache.get(args[0]);
-
-    const role =
-        message.mentions.roles.first() ||
-        message.guild.roles.cache.get(args[1]);
-
-    if (!member) {
-        return message.reply("❌ Mentionne un membre.");
-    }
-
-    if (!role) {
-        return message.reply("❌ Mentionne un rôle.");
-    }
-
-    if (role.position >= message.guild.members.me.roles.highest.position) {
-        return message.reply("❌ Mon rôle est trop bas pour ajouter ce rôle.");
-    }
-
-    if (member.roles.cache.has(role.id)) {
-        return message.reply("❌ Ce membre possède déjà ce rôle.");
-    }
-
-    try {
-
-        await member.roles.add(role);
-
-        message.reply(`✅ Le rôle **${role.name}** a été ajouté à ${member}.`);
-
-    } catch (err) {
-        console.error(err);
-        message.reply("❌ Impossible d'ajouter le rôle.");
-    }
-
-}
 
     if (!message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
       return message.reply("❌ Tu n'as pas la permission de supprimer des messages.");
