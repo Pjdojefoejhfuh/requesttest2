@@ -1,0 +1,46 @@
+[
+  {
+    "id": "mrc743eq3lj94",
+    "status": "claimed",
+    "claimedBy": "1474433573174907054",
+    "claimedAt": 1783522281051,
+    "submission": null,
+    "createdAt": 1783522275650,
+    "link": "https://www.roblox.com/fr/games/96947338677734/1-Speed-Slime-Keyboard-Escape?gameSetTypeId=100000000&homePageSessionInfo=33519f10-12f7-4d42-baa8-2d3db8ac89c0&isAd=false&newGameEnum_analyticsData=0&numberOfLoadedTiles=6&page=homePage&placeId=96947338677734&playContext=homePage&position=0&positionInRow=0&rowOnPage=1&sortPos=1&sortSubId=&sourceSortId_analyticsData=100000000&universeId=10127090395",
+    "gameName": null,
+    "thumbnailUrl": null,
+    "requesterId": "1474433573174907054",
+    "requesterTag": "nikimp4"
+  },
+  {
+    "id": "mrc7d6r6i1mo2",
+    "status": "submitted",
+    "claimedBy": "1519802314980982986",
+    "claimedAt": 1783522763935,
+    "submission": {
+      "robloxName": "test",
+      "imageUrl": null,
+      "gofileLink": "https://gofile.io/d/5xiBB3",
+      "submittedAt": 1783522770150
+    },
+    "createdAt": 1783522699890,
+    "link": "https://roblox.com/",
+    "gameName": null,
+    "thumbnailUrl": null,
+    "requesterId": "1519802314980982986",
+    "requesterTag": "planix_devezzlooser"
+  },
+  {
+    "id": "mrc7vkpbhj2gb",
+    "status": "claimed",
+    "claimedBy": "1474433573174907054",
+    "claimedAt": 1783523578403,
+    "submission": null,
+    "createdAt": 1783523557775,
+    "link": "https://www.roblox.com/fr/games/96947338677734/1-Speed-Slime-Keyboard-Escapehttps://www.roblox.com/fr/games/96947338677734/1-Speed-Slime-Keyboard-Escape",
+    "gameName": null,
+    "thumbnailUrl": null,
+    "requesterId": "1229039665978281995",
+    "requesterTag": "julesboss2014_36838"
+  }
+]

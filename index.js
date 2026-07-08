@@ -6,13 +6,17 @@ const {
   Collection,
   Events,
   EmbedBuilder,
+<<<<<<< HEAD
   PermissionsBitField,
+=======
+>>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
 } = require('discord.js');
 
 const config = require('./config');
 const db = require('./utils/db');
 const { refreshPanel } = require('./utils/panel');
 
+<<<<<<< HEAD
 const PREFIX = "?";
 
 const client = new Client({
@@ -21,6 +25,10 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
   ],
+=======
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
+>>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
 });
 
 client.commands = new Collection();
@@ -53,6 +61,7 @@ client.once(Events.ClientReady, async (readyClient) => {
   }
 });
 
+<<<<<<< HEAD
 // ===============================
 // Commandes avec préfixe
 // ===============================
@@ -103,6 +112,8 @@ client.on(Events.MessageCreate, async (message) => {
   }
 });
 
+=======
+>>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
 // Interactions
 client.on(Events.InteractionCreate, async (interaction) => {
 
@@ -150,6 +161,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
     try {
 
+<<<<<<< HEAD
+=======
+      // Réponse immédiate pour éviter l'expiration
+>>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       await interaction.deferReply({ flags: 64 });
 
       const requestId = interaction.values[0];
@@ -166,12 +181,20 @@ client.on(Events.InteractionCreate, async (interaction) => {
         return;
       }
 
+<<<<<<< HEAD
+=======
+      // Mise à jour BDD
+>>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       db.update(requestId, {
         status: "claimed",
         claimedBy: interaction.user.id,
         claimedAt: Date.now(),
       });
 
+<<<<<<< HEAD
+=======
+      // Création du MP
+>>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       const embed = new EmbedBuilder()
         .setColor(0x00b0f4)
         .setTitle("🎮 Requête prise !")
@@ -196,8 +219,15 @@ client.on(Events.InteractionCreate, async (interaction) => {
         dmSent = false;
       }
 
+<<<<<<< HEAD
       await refreshPanel(client);
 
+=======
+      // Actualisation du panel
+      await refreshPanel(client);
+
+      // Réponse
+>>>>>>> ce7664c2b4824ff85c8474604d84045e77de3f27
       await interaction.editReply({
         content: dmSent
           ? "✅ Tu as pris cette requête ! Vérifie tes messages privés."
